@@ -1,0 +1,515 @@
+* {
+  box-sizing: border-box;
+}
+
+html {
+  height: 100%;
+}
+
+div#root {
+  display: flex;
+  min-height: 100%;
+}
+
+body {
+  margin: 0;
+  height: 100%;
+  font-family: Helvetica, Arial, sans-serif;
+  color: white;
+}
+
+textarea:focus,
+input:focus {
+  outline: none;
+}
+
+.projects-section {
+  padding-left: 20px;
+  padding-right: 20px;
+  width: 30%;
+  max-width: 275px;
+
+  background-color: #262626;
+  display: flex;
+  flex-direction: column;
+}
+
+.user-section {
+  margin-top: 20px;
+  font-size: 18px;
+
+  display: flex;
+  justify-content: space-between;
+}
+
+.logout-btn {
+  background-color: transparent;
+  border: 0;
+  color: tomato;
+  cursor: pointer;
+  font-size: 18px;
+}
+
+.projects-header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.delete-task-btn,
+.delete-project-btn,
+.edit-project-btn,
+.add-project-btn {
+  cursor: pointer;
+  background: none;
+  border: none;
+}
+
+.delete-task-btn:hover,
+.delete-project-btn:hover,
+.edit-project-btn:hover {
+  transform: scale(1.2);
+}
+
+.delete-task-btn {
+  align-self: center;
+}
+
+.delete-task-btn:hover {
+  height: 2rem;
+}
+
+.delete-project-btn-img,
+.edit-project-btn-img {
+  height: 1.25rem;
+}
+
+.add-project-btn:hover {
+  transform: scale(1.2);
+}
+
+.user-projects {
+  padding: 0;
+  list-style-type: none;
+
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.project-container {
+  border-radius: 6px;
+  color: lightgrey;
+  height: 2rem;
+  display: flex;
+  align-items: center;
+  transition: background-color 0.4s ease;
+}
+
+.project-container:hover {
+  background-color: hsl(0, 0%, 20%);
+}
+
+.project-container input {
+  padding: 6px;
+  background-color: transparent;
+  border: transparent;
+  color: inherit;
+  font-size: 1rem;
+  transition: 0.4s;
+  cursor: pointer;
+  width: 80%;
+}
+
+#selected {
+  color: rgb(253, 154, 136);
+  background-color: hsl(0, 31%, 21%);
+}
+
+.tasks-section {
+  padding-top: 30px;
+  background-color: #1e1e1e;
+  flex-grow: 1;
+
+  display: flex;
+  flex-direction: column;
+}
+
+.tasks-wrapper {
+  align-self: center;
+  width: 60%;
+}
+
+.project-name {
+  margin-bottom: 30px;
+}
+
+.task-list {
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin: 0px;
+}
+
+.task {
+  display: flex;
+
+  gap: 1rem;
+  border-radius: 10px;
+  padding: 5px;
+}
+
+.task:hover {
+  background-color: hsl(0, 0%, 22%);
+}
+
+.task input {
+  margin: 0;
+  display: inline;
+  width: 1.25rem;
+  height: 1.25rem;
+  accent-color: tomato;
+}
+
+.task input:checked::before {
+  transform: scale(1);
+}
+
+.task-info {
+  cursor: pointer;
+  flex-grow: 1;
+}
+
+.task-title {
+  margin-top: 0;
+  margin-bottom: 2px;
+}
+
+#High {
+  color: hsl(1, 69%, 58%);
+}
+
+#Medium {
+  color: hsl(47, 69%, 58%);
+}
+
+#Low {
+  color: hsl(125, 69%, 58%);
+}
+
+.task-description,
+.task-date {
+  font-size: 0.75rem;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+.task-description {
+  color: lightgray;
+}
+
+.task-date {
+  font-size: 0.75rem;
+  color: #a970ff;
+}
+
+.add-task-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  cursor: pointer;
+  border-radius: 10px;
+  padding: 5px;
+}
+
+.add-task-wrapper:hover {
+  background-color: hsl(0, 0%, 22%);
+}
+
+.add-task-btn {
+  cursor: pointer;
+  border: none;
+  border-radius: 100%;
+  padding: 0.4px;
+  background-color: tomato;
+  color: #1e1e1e;
+  height: 30px;
+  width: 30px;
+  font-size: 30px;
+  text-align: center;
+}
+
+.add-task-label {
+  color: tomato;
+  font-weight: bold;
+  background: none;
+}
+
+dialog::backdrop {
+  background-color: hsla(0, 0%, 10%, 0.6);
+}
+
+.add-project-modal,
+.edit-modal,
+.add-task-modal {
+  color: white;
+  border: none;
+  border-radius: 10px;
+  padding: 0;
+}
+
+.add-task-modal {
+  width: 40%;
+  max-width: 500px;
+  height: 27%;
+  min-height: 275px;
+}
+
+.add-project-modal {
+  height: 20%;
+  min-height: 200px;
+}
+
+#task-title-input,
+#task-desc-input {
+  background: none;
+  border: none;
+  color: white;
+}
+
+#task-title-input {
+  font-size: 1.5rem;
+}
+
+#task-desc-input {
+  font-size: 1rem;
+}
+
+#task-title-input::placeholder,
+#task-desc-input::placeholder {
+  color: lightgrey;
+}
+
+.edit-modal {
+  width: 50%;
+  max-width: 700px;
+  height: 60%;
+}
+
+.modal-content {
+  display: flex;
+  flex-direction: column;
+
+  height: 100%;
+}
+
+.modal-top {
+  background-color: #1e1e1e;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+}
+
+.close-add-project-btn,
+.close-edit-task-btn,
+.close-add-task-btn {
+  cursor: pointer;
+}
+
+.main-content-edit-modal,
+.main-content-add-task-modal,
+.main-content-add-project-modal {
+  display: flex;
+  flex-grow: 1;
+}
+
+.main-content-add-task-modal {
+  flex-direction: column;
+  justify-content: space-around;
+  background-color: hsl(0, 0%, 18%);
+  padding-left: 30px;
+  padding-right: 30px;
+}
+
+.main-content-add-project-modal {
+  gap: 5px;
+  flex-direction: column;
+  background-color: hsl(0, 0%, 15%);
+  padding: 10px 30px;
+  font-size: 1.2rem;
+}
+
+#new-project-name {
+  font-size: 1.2rem;
+  background: none;
+  border: 1px lightgrey solid;
+  border-radius: 10px;
+  margin-bottom: 30px;
+  color: white;
+}
+
+.date-priority-wrapper {
+  display: flex;
+}
+
+.main-content-edit-modal {
+  background-color: hsl(0, 0%, 15%);
+}
+
+.edit-modal-name-desc-section {
+  width: 70%;
+  padding-left: 30px;
+  padding-right: 30px;
+}
+
+.task-name-wrapper,
+.task-desc-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.edit-modal-task-name {
+  color: white;
+  font-size: 1.35rem;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  border: 0;
+  background-color: hsl(0, 0%, 15%);
+  width: 100%;
+  transition: 0.4s;
+}
+
+.edit-modal-task-desc {
+  margin-top: 0;
+  color: lightgray;
+  border: 0;
+  background-color: hsl(0, 0%, 15%);
+  width: 100%;
+  transition: 0.4s;
+}
+
+.edit-modal-task-name-btn,
+.edit-modal-task-desc-btn {
+  cursor: pointer;
+  background: none;
+  color: hsl(0, 0%, 100%);
+  border: 0;
+  font-size: 1.2rem;
+  color: hsl(1, 69%, 58%);
+}
+
+.logout-btn:hover,
+.edit-modal-task-name-btn:hover,
+.edit-modal-task-desc-btn:hover {
+  color: hsl(1, 69%, 68%);
+}
+
+.edit-modal-task-name-btn:active,
+.edit-modal-task-desc-btn:active {
+  color: hsl(1, 69%, 78%);
+}
+
+.edit-date-priority {
+  background-color: hsl(0, 0%, 18%);
+  flex-grow: 1;
+  padding: 15px;
+
+  display: flex;
+  flex-direction: column;
+}
+
+.project-input-wrapper,
+.due-date-input-wrapper,
+.priority-input-wrapper {
+  display: flex;
+  flex-direction: column;
+
+  margin-bottom: 20px;
+}
+
+.project-input-wrapper label,
+.due-date-input-wrapper label,
+.priority-input-wrapper label {
+  font-weight: bold;
+}
+
+#edit-project-input,
+#project-input,
+#due-date-input,
+#priority-input,
+#edit-priority-input {
+  font-size: 0.95rem;
+  border: 0;
+  background-color: hsl(0, 0%, 18%);
+  width: 100%;
+}
+
+#edit-project-input,
+#project-input,
+#edit-priority-input {
+  color: white;
+}
+
+#priority-input,
+#edit-priority-input {
+  color: lightgrey;
+}
+
+#add-due-date-input {
+  font-size: 0.95rem;
+  width: 200px;
+  border: 0;
+  background-color: hsl(0, 0%, 18%);
+}
+
+#add-due-date-input,
+#add-due-date-input::placeholder,
+#due-date-input,
+#due-date-input::placeholder {
+  font-size: 0.95rem;
+  color: #a970ff;
+}
+
+.high-option {
+  color: hsl(1, 69%, 58%);
+}
+
+.medium-option {
+  color: hsl(47, 69%, 58%);
+}
+
+.low-option {
+  color: hsl(125, 69%, 58%);
+}
+
+.edit-task-btn,
+.submit-task-btn,
+.submit-project-btn {
+  cursor: pointer;
+  background-color: tomato;
+  color: white;
+  border: 0;
+  border-radius: 10px;
+  font-size: 1.2rem;
+  align-self: end;
+  margin-bottom: 10px;
+  padding: 7px;
+}
+
+.edit-task-btn {
+  margin-top: auto;
+}
+
+.edit-task-btn:hover,
+.submit-task-btn:hover,
+.submit-project-btn:hover {
+  background-color: hsl(1, 69%, 59%);
+}
+
+.edit-task-btn:active,
+.submit-task-btn:active,
+.submit-project-btn:active {
+  background-color: hsl(1, 69%, 49%);
+}
